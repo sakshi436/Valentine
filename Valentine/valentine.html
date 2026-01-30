@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine’s Day ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde4, #ffeef2);
+      color: #4a1f2f;
+    }
+
+    header {
+      padding: 80px 20px 50px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      font-size: 1.15rem;
+      opacity: 0.85;
+    }
+
+    .messages {
+      max-width: 960px;
+      margin: auto;
+      padding: 20px 20px 70px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 22px 45px rgba(0,0,0,0.14);
+      animation: fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .text {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .copy {
+      background: #d81b60;
+      color: white;
+    }
+
+    .share {
+      background: #25D366;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Valentine’s Day ❤️</h1>
+  <p>Not just love — intention, presence, and choice.</p>
+</header>
+
+<section class="messages">
+
+  <div class="card">
+    <div class="text">
+      Loving you isn’t a feeling I wait for —  
+      it’s a decision I make every day, and I’d choose it again without hesitation.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="text">
+      You don’t complete my life —  
+      you add meaning to it in ways I never knew I was missing.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="text">
+      If love is built in moments —  
+      then every ordinary day with you is quietly extraordinary.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  Love, said with intention ❤️
+</footer>
+
+<script>
+  document.querySelectorAll(".copy").forEach(btn => {
+    btn.onclick = () => {
+      const text = btn.closest(".card").querySelector(".text").innerText;
+      navigator.clipboard.writeText(text);
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 1500);
+    };
+  });
+
+  document.querySelectorAll(".share").forEach(btn => {
+    btn.onclick = () => {
+      const text = btn.closest(".card").querySelector(".text").innerText;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    };
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Surprise 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#ffe6f2, #fff);
+      text-align: center;
+      padding: 60px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    h1 { color: #ff4da6; }
+    p { font-size: 20px; }
+    small { color: #777; }
+  </style>
+</head>
+
+<body>
+
+<div class="card" id="app">
+  <h2>Loading your surprise… 💝</h2>
+</div>
+
+<script>
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const encoded = params.get("v");
+
+    if (!encoded) {
+      throw "Missing link data";
+    }
+
+    const decoded = decodeURIComponent(atob(encoded));
+    const data = JSON.parse(decoded);
+
+    if (!data.days || Object.keys(data.days).length === 0) {
+      throw "No planned days found";
+    }
+
+    // Determine which day to show
+    let dayKey;
+
+    if (data.__testMode) {
+      dayKey = Object.keys(data.days)[0]; // first planned day
+    } else {
+      const today = new Date();
+      dayKey =
+        ("0" + (today.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + today.getDate()).slice(-2);
+    }
+
+    const dayData = data.days[dayKey];
+
+    if (!dayData) {
+      document.getElementById("app").innerHTML = `
+        <h1>⏳ Not yet!</h1>
+        <p>Come back on the right day 💕</p>
+      `;
+    } else {
+      document.getElementById("app").innerHTML = `
+        <h1>💌 From ${data.sender}</h1>
+        <h2>For ${data.receiver}</h2>
+        <p>${dayData.message}</p>
+        <small>${dayKey}</small>
+      `;
+    }
+
+  } catch (err) {
+    document.getElementById("app").innerHTML = `
+      <h1>❌ Error</h1>
+      <p>${err}</p>
+      <small>Open DevTools → Console for details</small>
+    `;
+    console.error(err);
+  }
+</script>
+
+</body>
+</html>
