@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Occasion Studio — Valentine Week</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #4a2c35;
+      overflow-x: hidden;
+      background: #ffe6ef;
+    }
+
+    /* CAROUSEL TOP HALF */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 75vh; /* top half of the screen */
+      overflow: hidden;
+    }
+
+    .carousel-slide {
+      display: flex;
+      width: 100%; /* 4 images */
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* OVERLAY ON CAROUSEL */
+    .carousel-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 230, 240, 0.4);
+      z-index: 1;
+    }
+
+    /* FLOATING HEARTS */
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      width: 20px;
+      height: 20px;
+      background: #ff7aa2;
+      transform: rotate(45deg);
+      animation: floatUp 9s linear infinite;
+      opacity: 0.7;
+      z-index: -1;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff7aa2;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+      20% { opacity: 0.8; }
+      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+      margin-top: -50px; /* pull hero slightly over carousel */
+    }
+
+    .hero-card {
+      max-width: 720px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      padding: 50px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 { font-size: 2.7rem; margin-bottom: 15px; }
+    p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 34px;
+      background: linear-gradient(135deg, #ff5c8d, #ff8fab);
+      color: #fff;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(255,92,141,0.4);
+    }
+
+    /* SECTIONS */
+    .section { padding: 90px 20px; text-align: center; }
+    .days {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .day-card {
+      background: rgba(255,255,255,0.7);
+      padding: 28px;
+      border-radius: 22px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .day-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+    }
+
+    footer { padding: 40px; font-size: 0.9rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+
+  <!-- CAROUSEL -->
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carousel-slide">
+      <img src="assets\css\js\images\backgrounds\b1.jpg" alt="Slide 1">
+      <img src="assets\css\js\images\backgrounds\b2.jpg" alt="Slide 2">
+      <img src="assets\css\js\images\backgrounds\b3.jpg" alt="Slide 3">
+      <img src="assets\css\js\images\backgrounds\b5.jpg" alt="Slide 4">
+    </div>
+    <div class="carousel-overlay"></div>
+  </div>
+
+  <!-- FLOATING HEARTS -->
+  <div class="heart" style="left:15%; animation-delay:0s"></div>
+  <div class="heart" style="left:45%; animation-delay:2s"></div>
+  <div class="heart" style="left:70%; animation-delay:4s"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-card">
+      <h1>Make Every Word Count This Valentine Week ❤️</h1>
+      <p>
+        From secret crushes to lifelong partners, discover messages, notes, and ideas that speak from the heart — modern expressions of love made beautifully simple.
+        We help you say exactly what your heart feels — effortlessly, memorably, beautifully.
+      </p>
+      <a href="#valentine-week" class="cta">Explore Valentine Week</a>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="section">
+    <h2>Why <b>Say It Better?</b></h2>
+    <p>Because clichés are easy. Being remembered is everything.”</p>
+  </section>
+
+  <!-- VALENTINE WEEK -->
+  <section class="section" id="valentine-week">
+  <h2 style="text-align: center;">Valentine Week 💌</h2>
+  <div class="days">
+    <!-- Rose Day -->
+    <div class="day-card" data-day="rose" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image:url('assets/css/js/images/backgrounds/b10.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.65;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        🌹 <strong>Rose Day</strong><br>Say it softly
+      </div>
+    </div>
+
+    <!-- Propose Day -->
+    <div class="day-card" data-day="propose" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b11.jpg');
+          background-size: cover;
+          background-position: right;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        💍 <strong>Propose Day</strong><br>Brave words
+      </div>
+    </div>
+
+    <!-- Chocolate Day -->
+    <div class="day-card" data-day="chocolate" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b12.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        🍫 <strong>Chocolate Day</strong><br>Sweet notes
+      </div>
+    </div>
+
+    <!-- Teddy Day -->
+    <div class="day-card" data-day="teddy" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b13.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        🧸 <strong>Teddy Day</strong><br>Cute & cozy
+      </div>
+    </div>
+
+    <!-- Promise Day -->
+    <div class="day-card" data-day="promise" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b14.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        🤝 <strong>Promise Day</strong><br>Meaningful lines
+      </div>
+    </div>
+
+    <!-- Hug Day -->
+    <div class="day-card" data-day="hug" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b15.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        🤗 <strong>Hug Day</strong><br>Warm words
+      </div>
+    </div>
+
+    <!-- Kiss Day -->
+    <div class="day-card" data-day="kiss" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b16.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.50;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        💋 <strong>Kiss Day</strong><br>Flirty vibes
+      </div>
+    </div>
+
+    <!-- Valentine’s Day -->
+    <div class="day-card" data-day="valentine" style="
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.7);
+        text-align: center;
+        padding: 30px;
+        cursor: pointer;
+    ">
+      <div style="
+          position: absolute;
+          inset: 0;
+          background-image: url('assets/css/js/images/backgrounds/b17.jpg');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.65;
+          z-index: 0;
+      "></div>
+      <div style="position: relative; z-index: 1;">
+        ❤️ <strong>Valentine’s Day</strong><br>Love, defined
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <footer>
+    <h2 style="text-align: center;"> Made for people who feel deeply ✨ </h2>
+  </footer>
+
+  <!-- CAROUSEL SCRIPT -->
+  <script>
+    const carouselSlide = document.getElementById('carousel-slide');
+    const totalSlides = carouselSlide.children.length;
+    let currentIndex = 0;
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      carouselSlide.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(nextSlide, 2000); // change every 2s
+  </script>
+
+  <!-- DAY CARD CLICK -->
+  <script>
+    document.querySelectorAll(".day-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const day = card.dataset.day;
+        window.location.href = `${day}.html`;
+      });
+    });
+  </script>
+
+</body>
+</html>
