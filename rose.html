@@ -72,6 +72,34 @@
       margin: auto;
     }
 
+    /* 🌹 CATEGORY BAR FIX */
+    .category-bar {
+      position: relative;
+      z-index: 5;          /* Lifts it above header overlay */
+      max-width: 900px;
+      margin: 20px auto 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tag {
+      padding: 8px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .tag:hover,
+    .tag.active {
+      background: #ff5c8d;
+      color: white;
+    }
+
     /* 🌸 SUGGESTION POINTER (1st) */
     .suggestion {
       margin-top: 18px;
@@ -155,33 +183,7 @@
       font-size: 0.9rem;
       opacity: 0.7;
     }
-    /* 🌹 CATEGORY BAR FIX */
-    .category-bar {
-      position: relative;
-      z-index: 5;          /* Lifts it above header overlay */
-      max-width: 900px;
-      margin: 20px auto 10px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-        .tag {
-      padding: 8px 18px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.85);
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
     
-    .tag:hover,
-    .tag.active {
-      background: #ff5c8d;
-      color: white;
-    }
 
   </style>
 </head>
@@ -586,6 +588,7 @@ Forever in this tender way.
 
 </body>
 </html>
+
 
 
 
