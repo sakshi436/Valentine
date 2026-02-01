@@ -568,6 +568,7 @@ Forever in this tender way.
 </footer>
 
 <script>
+  /* COPY BUTTON */
   document.querySelectorAll(".copy").forEach(btn => {
     btn.addEventListener("click", () => {
       const text = btn.closest(".card").querySelector(".text").innerText;
@@ -577,6 +578,7 @@ Forever in this tender way.
     });
   });
 
+  /* SHARE BUTTON */
   document.querySelectorAll(".share").forEach(btn => {
     btn.addEventListener("click", () => {
       const text = btn.closest(".card").querySelector(".text").innerText;
@@ -584,10 +586,35 @@ Forever in this tender way.
       window.open(url, "_blank");
     });
   });
+
+  /* ✅ CATEGORY FILTER (THIS WAS MISSING) */
+  const tags = document.querySelectorAll(".tag");
+  const cards = document.querySelectorAll(".card");
+
+  tags.forEach(tag => {
+    tag.addEventListener("click", () => {
+      
+      // Remove active class from all tags
+      tags.forEach(t => t.classList.remove("active"));
+      tag.classList.add("active");
+
+      const type = tag.getAttribute("data-type");
+
+      cards.forEach(card => {
+        if (type === "all" || card.getAttribute("data-type") === type) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
 </script>
+
 
 </body>
 </html>
+
 
 
 
