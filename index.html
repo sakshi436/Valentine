@@ -576,22 +576,34 @@
 </script>
 
 <script>
-  const exploreBtn = document.querySelector(".explore-valentine"); // your button class
+  const exploreBtn = document.querySelector(".explore-valentine");
   const celebrate = document.getElementById("celebrate");
+  const target = document.getElementById("valentine-week");
 
-  exploreBtn.addEventListener("click", () => {
+  exploreBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // ⛔ stop default anchor jump
+
+    // 🎉 show emoji celebration
     celebrate.classList.remove("hidden");
 
+    // ⏳ after animation → scroll
     setTimeout(() => {
       celebrate.classList.add("hidden");
-    }, 1300);
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 900); // slightly before emojis disappear
   });
 </script>
+
 
   
 
 </body>
 </html>
+
 
 
 
