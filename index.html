@@ -492,25 +492,40 @@
     });
   </script>
 
-  
-
   <script>
-  window.addEventListener("load", () => {
-    if (!sessionStorage.getItem("welcomePopupShown")) {
-      setTimeout(() => {
-        document.getElementById("welcomePopup").style.display = "flex";
-        sessionStorage.setItem("welcomePopupShown", "true");
-      }, 2500);
+  const popup = document.getElementById("welcomePopup");
+  let allowBack = false;
+
+  // Push a dummy state to detect back navigation
+  history.pushState({ page: "valentine" }, "", location.href);
+
+  window.addEventListener("popstate", function () {
+    if (!allowBack && !sessionStorage.getItem("exitPopupShown")) {
+      popup.style.display = "flex";
+      sessionStorage.setItem("exitPopupShown", "true");
+
+      // Re-push state so user stays on page
+      history.pushState({ page: "valentine" }, "", location.href);
+    } else {
+      allowBack = true;
+      history.back();
     }
   });
 
   function closePopup() {
-    document.getElementById("welcomePopup").style.display = "none";
+    popup.style.display = "none";
+  }
+
+  function allowExit() {
+    allowBack = true;
+    popup.style.display = "none";
+    history.back();
   }
 </script>
 
 </body>
 </html>
+
 
 
 
