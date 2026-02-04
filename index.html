@@ -20,6 +20,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+      .celebrate {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 240, 235, 0.75);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        z-index: 9999;
+      }
+      
+      .celebrate span {
+        font-size: 2.8rem;
+        animation: popFloat 1.2s ease forwards;
+      }
+      
+      .celebrate span:nth-child(1) { animation-delay: 0s; }
+      .celebrate span:nth-child(2) { animation-delay: 0.1s; }
+      .celebrate span:nth-child(3) { animation-delay: 0.2s; }
+      .celebrate span:nth-child(4) { animation-delay: 0.3s; }
+      .celebrate span:nth-child(5) { animation-delay: 0.4s; }
+      
+      @keyframes popFloat {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) translateY(20px);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2) translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1) translateY(-60px);
+        }
+      }
+      
+      .hidden {
+        display: none;
+      }
+      
     /* 🌸 POPUP STYLES */
     .popup-overlay {
       position: fixed;
@@ -246,7 +288,7 @@
         From secret crushes to lifelong partners, discover messages, notes, and ideas that speak from the heart — modern expressions of love made beautifully simple.
         We help you say exactly what your heart feels — effortlessly, memorably, beautifully.
       </p>
-      <a href="#valentine-week" class="cta">Explore Valentine Week</a>
+      <a href="#valentine-week" class="cta explore-valentine">Explore Valentine Week</a>
     </div>
   </section>
 
@@ -459,6 +501,16 @@
   <footer>
     <h2 style="text-align: center;"> Made for people who feel deeply ✨ </h2>
   </footer>
+
+<!-- 🎉 CELEBRATION OVERLAY -->
+<div id="celebrate" class="celebrate hidden">
+  <span>💖</span>
+  <span>🥰</span>
+  <span>💘</span>
+  <span>😍</span>
+  <span>✨</span>
+</div>
+  
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HGPEY079VF"></script>
 <script>
@@ -523,8 +575,24 @@
   }
 </script>
 
+<script>
+  const exploreBtn = document.querySelector(".explore-valentine"); // your button class
+  const celebrate = document.getElementById("celebrate");
+
+  exploreBtn.addEventListener("click", () => {
+    celebrate.classList.remove("hidden");
+
+    setTimeout(() => {
+      celebrate.classList.add("hidden");
+    }, 1300);
+  });
+</script>
+
+  
+
 </body>
 </html>
+
 
 
 
