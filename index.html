@@ -535,14 +535,22 @@
   </script>
 
   <!-- DAY CARD CLICK -->
-  <script>
-    document.querySelectorAll(".day-card").forEach(card => {
-      card.addEventListener("click", () => {
-        const day = card.dataset.day;
-        window.location.href = `${day}.html`;
-      });
+<script>
+document.querySelectorAll(".day-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const day = card.dataset.day;
+
+    // GA4 event
+    gtag('event', 'select_valentine_day', {
+      event_category: 'navigation',
+      event_label: day
     });
-  </script>
+
+    window.location.href = `${day}.html`;
+  });
+});
+</script>
+
 
   <script>
   const popup = document.getElementById("welcomePopup");
@@ -583,6 +591,11 @@
   exploreBtn.addEventListener("click", (e) => {
     e.preventDefault(); // ⛔ stop default anchor jump
 
+    gtag('event', 'explore_valentine_week', {
+  event_category: 'cta',
+  event_label: 'homepage_hero'
+});
+
     // 🎉 show emoji celebration
     celebrate.classList.remove("hidden");
 
@@ -603,6 +616,7 @@
 
 </body>
 </html>
+
 
 
 
