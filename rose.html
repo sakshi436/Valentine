@@ -570,22 +570,34 @@ Forever in this tender way.
 <script>
   /* COPY BUTTON */
   document.querySelectorAll(".copy").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const text = btn.closest(".card").querySelector(".text").innerText;
-      navigator.clipboard.writeText(text);
-      btn.innerText = "Copied!";
-      setTimeout(() => btn.innerText = "Copy", 1500);
+  btn.onclick = () => {
+    const text = btn.closest(".card").querySelector(".text").innerText;
+    navigator.clipboard.writeText(text);
+
+    gtag('event', 'copy_message', {
+      event_category: 'engagement',
+      event_label: document.title
     });
-  });
+
+    btn.innerText = "Copied!";
+    setTimeout(() => btn.innerText = "Copy", 1500);
+  };
+});
 
   /* SHARE BUTTON */
   document.querySelectorAll(".share").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const text = btn.closest(".card").querySelector(".text").innerText;
-      const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
+  btn.onclick = () => {
+    const text = btn.closest(".card").querySelector(".text").innerText;
+
+    gtag('event', 'whatsapp_share', {
+      event_category: 'share',
+      event_label: document.title
     });
-  });
+
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+  };
+});
+
 
   /* ✅ CATEGORY FILTER (THIS WAS MISSING) */
   const tags = document.querySelectorAll(".tag");
@@ -614,6 +626,7 @@ Forever in this tender way.
 
 </body>
 </html>
+
 
 
 
