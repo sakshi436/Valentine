@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sakshi436.github.io/Valentine/sitemap.xml
