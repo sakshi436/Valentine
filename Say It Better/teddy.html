@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chocolate Day 🍫</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff4e6, #ffe0c7);
+      color: #4a2c35;
+    }
+
+    header {
+      padding: 70px 20px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    /* CATEGORY FILTER */
+    .category-bar {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .tag {
+      padding: 10px 22px;
+      border-radius: 30px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .tag.active,
+    .tag:hover {
+      background: #8b4513;
+      color: white;
+    }
+
+    /* MESSAGE CARDS */
+    .messages {
+      max-width: 950px;
+      margin: auto;
+      padding: 30px 20px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 26px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .text {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    button {
+      flex: 1;
+      padding: 11px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .copy {
+      background: #8b4513;
+      color: white;
+    }
+
+    .share {
+      background: #25D366;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Chocolate Day 🍫</h1>
+  <p>Sweet, playful, and meant to be shared.</p>
+</header>
+
+<!-- CATEGORY FILTER -->
+<div class="category-bar">
+  <div class="tag active" data-type="all">All</div>
+  <div class="tag" data-type="cute">Cute</div>
+  <div class="tag" data-type="flirty">Flirty</div>
+  <div class="tag" data-type="funny">Funny</div>
+</div>
+
+<section class="messages">
+
+  <div class="card" data-type="cute">
+    <div class="text">
+      This chocolate is sweet,  
+      but honestly… it’s just doing its best to compete with you.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="card" data-type="flirty">
+    <div class="text">
+      If I had to choose between chocolate and you…  
+      I’d choose you — and then steal your chocolate.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="card" data-type="funny">
+    <div class="text">
+      Chocolate Day reminder:  
+      I may share my feelings with you,  
+      but not my last chocolate.
+    </div>
+    <div class="actions">
+      <button class="copy">Copy</button>
+      <button class="share">WhatsApp</button>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  Sweetness, but make it effortless 🍫
+</footer>
+
+<script>
+  // FILTER
+  const tags = document.querySelectorAll(".tag");
+  const cards = document.querySelectorAll(".card");
+
+  tags.forEach(tag => {
+    tag.addEventListener("click", () => {
+      tags.forEach(t => t.classList.remove("active"));
+      tag.classList.add("active");
+
+      const type = tag.dataset.type;
+      cards.forEach(card => {
+        card.style.display =
+          type === "all" || card.dataset.type === type
+            ? "block"
+            : "none";
+      });
+    });
+  });
+
+  // COPY
+  document.querySelectorAll(".copy").forEach(btn => {
+    btn.onclick = () => {
+      const text = btn.closest(".card").querySelector(".text").innerText;
+      navigator.clipboard.writeText(text);
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 1500);
+    };
+  });
+
+  // SHARE
+  document.querySelectorAll(".share").forEach(btn => {
+    btn.onclick = () => {
+      const text = btn.closest(".card").querySelector(".text").innerText;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    };
+  });
+</script>
+
+</body>
+</html>

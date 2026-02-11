@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  const p = new URLSearchParams(location.search);
+  const v = p.get("v");
+  if(!v){
+    document.body.innerText = "Invalid link 💔";
+  } else {
+    location.href = "day.html?v=" + v;
+  }
+</script>
+</body>
+</html>

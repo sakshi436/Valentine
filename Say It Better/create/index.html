@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sender Details</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: #fff0f5; padding: 50px; }
+    input, select { margin: 10px 0; padding: 10px; width: 250px; }
+    button { padding: 10px 20px; background: #ff4da6; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #e60073; }
+  </style>
+</head>
+<body>
+  <h2>Tell us about you 💌</h2>
+
+  <input id="sender" placeholder="Your name"><br>
+  <input id="receiver" placeholder="Their name"><br>
+  <select id="relationship">
+    <option value="">Relationship stage</option>
+    <option value="crush">Crush</option>
+    <option value="dating">Dating</option>
+    <option value="longterm">Long-term</option>
+    <option value="married">Married</option>
+  </select><br>
+  <select id="tone">
+    <option value="">Message tone</option>
+    <option value="flirty">Flirty</option>
+    <option value="cute">Cute</option>
+    <option value="emotional">Emotional</option>
+  </select><br><br>
+
+  <button onclick="next()">Continue →</button>
+
+  <script>
+    function next(){
+      const data = {
+        sender: sender.value,
+        receiver: receiver.value,
+        relationship: relationship.value,
+        tone: tone.value,
+        days: {}
+      };
+      localStorage.setItem("valentineData", JSON.stringify(data));
+      location.href = "planner.html";
+    }
+  </script>
+</body>
+</html>

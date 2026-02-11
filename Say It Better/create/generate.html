@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Valentine Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f5;
+      text-align: center;
+      padding: 60px;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #ff4da6;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e60073;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>🎁 Your Valentine Surprise is Ready</h2>
+  <p>Share this link with your special one 💖</p>
+
+  <input id="link" readonly />
+  <br>
+  <button onclick="copyLink()">Copy Link</button>
+
+  <script>
+    // Ensure data exists
+    const raw = localStorage.getItem("valentineData");
+
+    if (!raw) {
+      document.body.innerHTML = "<h2>❌ No data found. Please create the plan again.</h2>";
+      throw new Error("Missing valentineData");
+    }
+
+    const data = JSON.parse(raw);
+
+    // ENABLE TEST MODE
+    data.__testMode = true;
+
+    const encoded = btoa(encodeURIComponent(JSON.stringify(data)));
+
+    const url =
+      location.origin +
+      "/view/day.html?v=" +
+      encoded;
+
+    document.getElementById("link").value = url;
+
+    function copyLink() {
+      navigator.clipboard.writeText(url);
+      alert("💖 Link copied successfully!");
+    }
+  </script>
+
+</body>
+</html>
